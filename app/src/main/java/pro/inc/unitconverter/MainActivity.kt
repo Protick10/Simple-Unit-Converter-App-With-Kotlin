@@ -92,7 +92,7 @@ fun UnitCnverter() {
 
 // create ur own preview
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 fun UnitCnverterPreview() {
 
