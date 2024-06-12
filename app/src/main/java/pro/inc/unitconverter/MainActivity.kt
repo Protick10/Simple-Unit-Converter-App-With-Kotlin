@@ -9,7 +9,9 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
@@ -69,9 +71,12 @@ fun UnitCnverter() {
 //            Greeting(name ="Android", modifier = Modifier.padding(10.dp))
 
         Text(text = "Unit Converter")
+        Spacer(modifier = Modifier.height(16.dp))
         OutlinedTextField(value = "", onValueChange = {
             //here goes what to do when the value of the text field changes
+        // Spacer(modifier = Modifier.height(16.dp))
         })
+        Spacer(modifier = Modifier.height(16.dp))
 
         Row {
           //  val context = LocalContext.current
@@ -105,6 +110,7 @@ fun UnitCnverter() {
 
             }
         }
+        Spacer(modifier = Modifier.height(16.dp))
 
         Text(text = "result")
     }
