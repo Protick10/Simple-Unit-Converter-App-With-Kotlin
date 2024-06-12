@@ -5,11 +5,15 @@ import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
@@ -73,7 +77,27 @@ fun UnitCnverter() {
             // Row is a composable that places its children horizontally. It is a layout composable that places its children in a horizontal sequence.
 //            Greeting(name ="Android", modifier = Modifier.padding(10.dp))
 //            Greeting(name ="Android", modifier = Modifier.padding(10.dp))
+            Box{
+                Button(onClick = { /*TODO*/ }) {
+                    Text("Select")
+                    Icon(Icons.Default.ArrowDropDown,
+                        contentDescription = "drop down")
+                    
+                }
 
+
+            }
+
+            Box{
+                Button(onClick = { /*TODO*/ }) {
+                    Text("Select")
+                    Icon(Icons.Default.ArrowDropDown,
+                        contentDescription = "drop down")
+
+                }
+
+
+            }
         }
 
         Text(text = "result")
