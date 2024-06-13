@@ -72,6 +72,7 @@ fun UnitCnverter() {
 
         Text(text = "Unit Converter")
         Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.padding(16.dp))
         OutlinedTextField(value = "", onValueChange = {
             //here goes what to do when the value of the text field changes
         // Spacer(modifier = Modifier.height(16.dp))
