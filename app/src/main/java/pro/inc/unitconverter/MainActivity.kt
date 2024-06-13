@@ -13,9 +13,12 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material3.Button
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -96,9 +99,22 @@ fun UnitCnverter() {
                         contentDescription = "drop down")
                     
                 }
+                DropdownMenu(expanded = true, onDismissRequest = { /*TODO*/ }) {
+                    DropdownMenuItem(text = { Text("Centimeter") },
+                        onClick = { /*TODO*/ })
+                    DropdownMenuItem(text = { Text("Meter") },
+                        onClick = { /*TODO*/ })
+                    DropdownMenuItem(text = { Text("Inchis") },
+                        onClick = { /*TODO*/ })
+                    DropdownMenuItem(text = { Text("Millimeter") },
+                        onClick = { /*TODO*/ })
+
+                }
 
 
             }
+
+            Spacer(modifier = Modifier.width(16.dp))
 
             Box{
                 Button(onClick = { /*TODO*/ }) {
@@ -108,8 +124,22 @@ fun UnitCnverter() {
 
                 }
 
+                DropdownMenu(expanded = true, onDismissRequest = { /*TODO*/ }) {
+                    DropdownMenuItem(text = { Text("Centimeter") },
+                        onClick = { /*TODO*/ })
+                    DropdownMenuItem(text = { Text("Meter") },
+                        onClick = { /*TODO*/ })
+                    DropdownMenuItem(text = { Text("Inchis") },
+                        onClick = { /*TODO*/ })
+                    DropdownMenuItem(text = { Text("Millimeter") },
+                        onClick = { /*TODO*/ })
+
+                }
+
 
             }
+
+
         }
         Spacer(modifier = Modifier.height(16.dp))
 
