@@ -26,6 +26,10 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -64,6 +68,14 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun UnitCnverter() {
+
+    var inputValue by remember { mutableStateOf("") }
+    var inputUnit by remember { mutableStateOf("Centimeter") }
+    var outputUnit by remember { mutableStateOf("Meter") }
+    var result by remember { mutableStateOf("") }
+    var iExpanded by remember { mutableStateOf(false) }
+    var oExpanded by remember { mutableStateOf(false) }
+    val cnversionFactoro = remember { mutableStateOf(0.01) }
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -76,10 +88,13 @@ fun UnitCnverter() {
         Text(text = "Unit Converter")
         Spacer(modifier = Modifier.height(16.dp))
         Spacer(modifier = Modifier.padding(16.dp))
-        OutlinedTextField(value = "", onValueChange = {
+        OutlinedTextField(value = inputValue, onValueChange = {
+            inputValue = it
             //here goes what to do when the value of the text field changes
         // Spacer(modifier = Modifier.height(16.dp))
-        })
+
+        },
+            label = { Text("Enter Value") })
         Spacer(modifier = Modifier.height(16.dp))
 
         Row {
@@ -99,7 +114,7 @@ fun UnitCnverter() {
                         contentDescription = "drop down")
                     
                 }
-                DropdownMenu(expanded = true, onDismissRequest = { /*TODO*/ }) {
+                DropdownMenu(expanded = false, onDismissRequest = { /*TODO*/ }) {
                     DropdownMenuItem(text = { Text("Centimeter") },
                         onClick = { /*TODO*/ })
                     DropdownMenuItem(text = { Text("Meter") },
@@ -124,7 +139,7 @@ fun UnitCnverter() {
 
                 }
 
-                DropdownMenu(expanded = true, onDismissRequest = { /*TODO*/ }) {
+                DropdownMenu(expanded = false, onDismissRequest = { /*TODO*/ }) {
                     DropdownMenuItem(text = { Text("Centimeter") },
                         onClick = { /*TODO*/ })
                     DropdownMenuItem(text = { Text("Meter") },
