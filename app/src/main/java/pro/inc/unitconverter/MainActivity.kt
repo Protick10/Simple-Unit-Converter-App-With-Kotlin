@@ -36,6 +36,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import pro.inc.unitconverter.ui.theme.UnitConverterTheme
+import kotlin.math.roundToInt
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -76,6 +77,12 @@ fun UnitCnverter() {
     var iExpanded by remember { mutableStateOf(false) }
     var oExpanded by remember { mutableStateOf(false) }
     val cnversionFactoro = remember { mutableStateOf(0.01) }
+
+    fun convertUnit(){
+        val inputValueDouble = inputValue.toDoubleOrNull() ?: 0.0
+        val opututresult = (inputValueDouble * cnversionFactoro.value * 100).roundToInt() / 100.0
+        result = opututresult.toString()
+    }
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -107,22 +114,44 @@ fun UnitCnverter() {
             // Row is a composable that places its children horizontally. It is a layout composable that places its children in a horizontal sequence.
 //            Greeting(name ="Android", modifier = Modifier.padding(10.dp))
 //            Greeting(name ="Android", modifier = Modifier.padding(10.dp))
+
+            //input box that means button and dropdown menu to select the input unit
             Box{
-                Button(onClick = { /*TODO*/ }) {
+                Button(onClick = { iExpanded = true }) {
                     Text("Select")
                     Icon(Icons.Default.ArrowDropDown,
                         contentDescription = "drop down")
                     
                 }
-                DropdownMenu(expanded = false, onDismissRequest = { /*TODO*/ }) {
+                DropdownMenu(expanded = iExpanded, onDismissRequest = { iExpanded = false }) {
                     DropdownMenuItem(text = { Text("Centimeter") },
-                        onClick = { /*TODO*/ })
+                        onClick = {
+                            inputUnit = "Centimeter"
+                            iExpanded = false //close the dropdown menu
+                            cnversionFactoro.value = 0.01
+                            convertUnit()
+                        })
                     DropdownMenuItem(text = { Text("Meter") },
-                        onClick = { /*TODO*/ })
+                        onClick = {
+                            iExpanded = false //close the dropdown menu
+                            inputUnit = "Meter"
+                            cnversionFactoro.value = 1.0
+                            convertUnit()
+                        })
                     DropdownMenuItem(text = { Text("Inchis") },
-                        onClick = { /*TODO*/ })
+                        onClick = {
+                            iExpanded = false //close the dropdown menu
+                            inputUnit = "Inchis"
+                            cnversionFactoro.value = 0.0254
+                            convertUnit()
+                        })
                     DropdownMenuItem(text = { Text("Millimeter") },
-                        onClick = { /*TODO*/ })
+                        onClick = {
+                            iExpanded = false //close the dropdown menu
+                            inputUnit = "Millimeter"
+                            cnversionFactoro.value = 0.001
+                            convertUnit()
+                        })
 
                 }
 
@@ -131,23 +160,33 @@ fun UnitCnverter() {
 
             Spacer(modifier = Modifier.width(16.dp))
 
+            //output box that means button and dropdown menu to select the output unit
+
             Box{
-                Button(onClick = { /*TODO*/ }) {
+                Button(onClick = {oExpanded = true}) {
                     Text("Select")
                     Icon(Icons.Default.ArrowDropDown,
                         contentDescription = "drop down")
 
                 }
 
-                DropdownMenu(expanded = false, onDismissRequest = { /*TODO*/ }) {
+                DropdownMenu(expanded = oExpanded, onDismissRequest = {oExpanded = false}) {
                     DropdownMenuItem(text = { Text("Centimeter") },
-                        onClick = { /*TODO*/ })
+                        onClick = {
+                            oExpanded = false
+                        })
                     DropdownMenuItem(text = { Text("Meter") },
-                        onClick = { /*TODO*/ })
+                        onClick = {
+                            oExpanded = false
+                        })
                     DropdownMenuItem(text = { Text("Inchis") },
-                        onClick = { /*TODO*/ })
+                        onClick = {
+                            oExpanded = false
+                        })
                     DropdownMenuItem(text = { Text("Millimeter") },
-                        onClick = { /*TODO*/ })
+                        onClick = {
+                            oExpanded = false
+                        })
 
                 }
 
