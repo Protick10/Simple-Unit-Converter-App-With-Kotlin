@@ -71,16 +71,17 @@ class MainActivity : ComponentActivity() {
 fun UnitCnverter() {
 
     var inputValue by remember { mutableStateOf("") }
-    var inputUnit by remember { mutableStateOf("Centimeter") }
+    var inputUnit by remember { mutableStateOf("Meter") }
     var outputUnit by remember { mutableStateOf("Meter") }
     var result by remember { mutableStateOf("") }
     var iExpanded by remember { mutableStateOf(false) }
     var oExpanded by remember { mutableStateOf(false) }
-    val cnversionFactoro = remember { mutableStateOf(0.01) }
+    val cnversionFactoro = remember { mutableStateOf(1.00) }
+    val oconversionFactoro = remember { mutableStateOf(1.00) }
 
     fun convertUnit(){
         val inputValueDouble = inputValue.toDoubleOrNull() ?: 0.0
-        val opututresult = (inputValueDouble * cnversionFactoro.value * 100).roundToInt() / 100.0
+        val opututresult = (inputValueDouble * cnversionFactoro.value * 100 / oconversionFactoro.value).roundToInt() / 100.0
         result = opututresult.toString()
     }
     Column(
@@ -97,6 +98,7 @@ fun UnitCnverter() {
         Spacer(modifier = Modifier.padding(16.dp))
         OutlinedTextField(value = inputValue, onValueChange = {
             inputValue = it
+            convertUnit()
             //here goes what to do when the value of the text field changes
         // Spacer(modifier = Modifier.height(16.dp))
 
@@ -118,7 +120,7 @@ fun UnitCnverter() {
             //input box that means button and dropdown menu to select the input unit
             Box{
                 Button(onClick = { iExpanded = true }) {
-                    Text("Select")
+                    Text(inputUnit)
                     Icon(Icons.Default.ArrowDropDown,
                         contentDescription = "drop down")
                     
@@ -164,7 +166,7 @@ fun UnitCnverter() {
 
             Box{
                 Button(onClick = {oExpanded = true}) {
-                    Text("Select")
+                    Text(outputUnit)
                     Icon(Icons.Default.ArrowDropDown,
                         contentDescription = "drop down")
 
@@ -174,18 +176,30 @@ fun UnitCnverter() {
                     DropdownMenuItem(text = { Text("Centimeter") },
                         onClick = {
                             oExpanded = false
+                            outputUnit = "Centimeter"
+                            oconversionFactoro.value = 0.01
+                            convertUnit()
                         })
                     DropdownMenuItem(text = { Text("Meter") },
                         onClick = {
                             oExpanded = false
+                            outputUnit = "Meter"
+                            oconversionFactoro.value = 1.0
+                            convertUnit()
                         })
                     DropdownMenuItem(text = { Text("Inchis") },
                         onClick = {
                             oExpanded = false
+                            outputUnit = "Inchis"
+                            oconversionFactoro.value = 0.0254
+                            convertUnit()
                         })
                     DropdownMenuItem(text = { Text("Millimeter") },
                         onClick = {
                             oExpanded = false
+                            outputUnit = "Millimeter"
+                            oconversionFactoro.value = 0.001
+                            convertUnit()
                         })
 
                 }
@@ -197,7 +211,7 @@ fun UnitCnverter() {
         }
         Spacer(modifier = Modifier.height(16.dp))
 
-        Text(text = "result")
+        Text(text = "result : $result $outputUnit")
     }
 }
 
